@@ -1,0 +1,9 @@
+from .base_schema import BaseSchema
+from entities.{{bp_name}}_entity import {{bp_classname}}Entity
+
+
+class {{ bp_classname }}Schema(BaseSchema):
+    
+    class Meta(BaseSchema.Meta):
+        model = {{bp_classname}}Entity
+

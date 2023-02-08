@@ -1,0 +1,61 @@
+# =====================Flask=====================
+flask==1.1.2
+Jinja2==3.0.3
+Werkzeug==1.0.1
+click==7.1.2
+MarkupSafe==2.0.1
+itsdangerous==2.0.1
+
+# ===================Flask插件====================
+flask-sqlalchemy==2.4.4  # ORM工具
+Flask-Migrate==2.6.0 # 数据库迁移工具
+flask-smorest==0.30.0  # 新的校验工具
+flask_jwt_extended==3.25.0  # JWT工具
+# Flask-Caching         # flask，想用这个插件就引入
+SQLAlchemy==1.3.22
+
+# =====================异步任务====================
+celery==5.1.2
+
+# =====================参数验证=====================
+marshmallow==3.10.0
+marshmallow-sqlalchemy==0.26.0
+
+# ===================HTTP客户端工具==================
+requests==2.25.1
+
+# ====================关系型数据库====================
+# Mysql
+PyMySQL==1.0.2
+# Pg
+# psycopg2-binary
+
+# ===================其他数据库驱动===================
+# 这里只是依赖的列表, 不能无脑装, 需要看一下服务端的版本是多少
+# pymongo
+redis==3.5.3
+# kafka
+# elasticsearch
+# pika  # AMQP
+# cx-Oracle  # oracle
+
+# =======================部署========================
+gunicorn==20.0.4
+# grpcio==1.42.0
+# gevent
+
+# =======================日志========================
+# dglogging
+git+ssh://git@git.datagrand.com:58422/nlp/dg_logging.git@v0.6.4
+git+ssh://git@git.datagrand.com:58422/idps/financial_beans.git@5d7472cb8372d17433d0c0d5e30a3815b239b510
+
+# =====================可选插件=======================
+# SimpleJSON  # 加速Json序列化
+# ujson  # 市面上最快的Json序列化工具
+# more-itertools  # 更多的迭代器工具
+# python-dateutil  # 更好用的日期解析工具
+# lxml  # 超级快的XML解析器, 支持xpath
+# beautifulsoup4  # HTML解析工具
+# lazy-object-proxy 延迟加载，和缓存需要区分开来
+# ipython # 更好的python shell，对于线上查找问题，很有帮助
+# bpython # 同上

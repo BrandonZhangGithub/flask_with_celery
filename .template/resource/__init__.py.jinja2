@@ -1,0 +1,8 @@
+# -*- coding: utf-8 -*-
+{% if not prefix %}
+from initialization.smorest_process import Blueprint
+{{ bp_name }}_bp = Blueprint("{{ bp_name }}", __name__)
+{% endif %}
+
+from . import urls, views
+

@@ -1,0 +1,2 @@
+#!/bin/bash
+ps aux | grep 'gunicorn' | awk '{print $2}'| xargs kill

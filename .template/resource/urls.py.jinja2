@@ -1,0 +1,9 @@
+# -*- coding: utf-8 -*-
+{% if not prefix %}
+from . import {{ bp_name }}_bp
+{% else %}
+from .. import {{ prefix }}
+{% endif %}
+
+from .views import {{ bp_classname }}Resource
+

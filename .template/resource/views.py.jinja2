@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+
+from flask.views import MethodView
+{% if prefix %}
+from .. import {{ prefix }}
+{% else %}
+from . import {{ bp_name }}_bp
+{% endif %}
+{% set TRUE_BP = prefix if prefix else bp_name + '_bp' %}
+class {{ bp_classname }}Resource(MethodView):
+
+    {% if need_spec %}@{{TRUE_BP}}.doc(description='{{bp_name}}', summary='{{bp_name}}', tags=[])
+    @{{TRUE_BP}}.arguments(as_kwargs=True)
+    @{{TRUE_BP}}.response(200){% endif %}
+    def get(self):
+        ...

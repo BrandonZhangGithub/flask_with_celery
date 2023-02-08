@@ -1,0 +1,53 @@
+version: '3.7'
+services:
+  web_api:
+    hostname: web_api
+    image: dockerhub.datagrand.com/flask-template-demo/web_api:dev
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/PROJECT_DIRNAME/app
+    depends_on:
+      - redis
+    volumes:
+      - ./app:/PROJECT_DIRNAME/app
+      - ./data/web_api/logs:/PROJECT_DIRNAME/app/logs
+    command: sh deploy/start.sh
+
+  redis:
+    hostname: redis
+    image: redis:6.0.9-alpine
+    expose:
+      - "6379"
+    volumes:
+      - ./data/redis:/data
+
+  mysql:
+    hostname: mysql
+    image: dockerhub.datagrand.com/datagrand/mysql:5.7
+    volumes:
+      - "./data/mysql/data:/var/lib/mysql"
+      - "./data/mysql/logs:/logs"
+    environment:
+      - MYSQL_DATABASE=local_test
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test_pw
+      - LANG=C.UTF-8
+      - TZ=Asia/Shanghai
+    privileged: true
+    ports:
+      - "13306:3306"
+    command: ['--character-set-server=utf8', '--collation-server=utf8_general_ci']
+
+  tasks:
+    hostname: tasks
+    image: dockerhub.datagrand.com/flask-template-demo/web_api:dev
+    environment:
+      - PYTHONPATH=/PROJECT_DIRNAME/app
+    depends_on:
+      - redis
+    volumes:
+      - ./app:/PROJECT_DIRNAME/app
+      - ./data/web_api/logs:/PROJECT_DIRNAME/app/logs
+    command: sh deploy/start_beats.sh
